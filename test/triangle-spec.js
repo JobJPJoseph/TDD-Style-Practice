@@ -1,5 +1,5 @@
 // Your code here
-const Triangle = require('../problems/triangle');
+const { Triangle, Scalene } = require('../problems/triangle');
 const { expect } = require('chai');
 // properly install chai spies, do not use sinon for this!
 const spies = require('chai-spies');
@@ -10,10 +10,25 @@ describe('Triangle', function () {
     let triangleValid;
     let triangleNotValid;
 
+    let triangles;
+
+    let triangle1;
+    let triangle2;
+    let triangle3;
+    let triangle4;
+
+
     this.beforeEach(function () {
         [side1, side2, side3] = [3, 3, 3];
         triangleValid = new Triangle(side1, side2, side3);
         triangleNotValid = new Triangle(side1, 6, 12);
+
+        triangle1 = new Triangle(1, 5, 3);
+        triangle2 = new Triangle(1, 3, 5);
+        triangle3 = new Triangle(10, 24, 2);
+        triangle4 = new Triangle(3, 6, 9);
+
+        triangles = [triangle1, triangle2,  triangle3, triangle4];
     });
 
     describe('Constructor', function () {
@@ -61,6 +76,43 @@ describe('Triangle', function () {
             });
 
         });
+    });
+
+    describe('validate', function () {
+
+        it('should initilize a property called isValid', function () {
+            expect(triangleValid.isValid).to.be.a('null');
+        });
+
+        context('When the triangle is valid', function () {
+
+            it('isValid property should be true', function () {
+                triangleValid.validate();
+                expect(triangleValid.isValid).to.equal(true);
+            });
+
+        });
+
+        context('When the triangle is not valid', function () {
+
+            it('isValid property should be false', function () {
+                triangleNotValid.validate();
+                expect(triangleNotValid.isValid).to.equal(false);
+            });
+
+        });
+
+    });
+
+
+    describe('getValidTrinagles', function () {
+
+        it('should return an array of valid triangles', function () {
+            const actual = Triangle.getValidTriangles(...triangles);
+            const expected = [triangle4];
+            expect(actual).to.deep.equal(expected);
+        });
+
     });
 
 });

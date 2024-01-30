@@ -4,6 +4,7 @@ class Triangle {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
+        this.isValid = null;
     }
 
     getPerimeter() {
@@ -19,6 +20,25 @@ class Triangle {
         if((this.side2 + this.side3) < this.side1)  return false;
         return true;
     }
+
+    validate() {
+        this.isValid = this.hasValidSideLengths();
+    }
+
+    static getValidTriangles(...triangles) {
+        return triangles.filter((triangle) => {
+            triangle.validate();
+            return triangle.isValid;
+        });
+    }
+
 }
 
-module.exports = Triangle;
+class Scalene {
+
+}
+
+module.exports = {
+    Triangle,
+    Scalene
+};
