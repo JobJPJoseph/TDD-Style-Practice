@@ -23,7 +23,7 @@ describe('Triangle', function () {
         triangleValid = new Triangle(side1, side2, side3);
         triangleNotValid = new Triangle(side1, 6, 12);
 
-        triangle1 = new Triangle(1, 5, 3);
+        triangle1 = new Triangle(5, 5, 5);
         triangle2 = new Triangle(1, 3, 5);
         triangle3 = new Triangle(10, 24, 2);
         triangle4 = new Triangle(3, 6, 9);
@@ -109,7 +109,7 @@ describe('Triangle', function () {
 
         it('should return an array of valid triangles', function () {
             const actual = Triangle.getValidTriangles(...triangles);
-            const expected = [triangle4];
+            const expected = [triangle1, triangle4];
             expect(actual).to.deep.equal(expected);
         });
 
@@ -118,6 +118,27 @@ describe('Triangle', function () {
 });
 
 describe('Scalene', function () {
+
+    let validScalene;
+
+    this.beforeEach(function () {
+        const [side1, side2, side3] = [1, 5, 10];
+        validScalene = new Scalene(side1, side2, side3);
+    });
+
+    describe('Constructor', function () {
+
+        it('should initialize an instance of the Scalene class', function () {
+            expect(validScalene).to.exist;
+        });
+
+        it('should initialize the 3 sides', function () {
+            expect(validScalene.side1).to.exist;
+            expect(validScalene.side2).to.exist;
+            expect(validScalene.side3).to.exist;
+        });
+
+    });
 
 });
 
