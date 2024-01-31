@@ -174,9 +174,9 @@ describe('Scalene', function () {
 
     describe('validate', function () {
 
-        context('Must overide the method in the Trinagle class', function () {
+        context('Must override the method in the Trinagle class', function () {
 
-            it('successfully overides Trianlge: validate', function () {
+            it('should return true for the overriden validate to derive from the Scalene class', function () {
                 /*
                 All we have to do is create an instance from Scalene and
                 call validate
@@ -190,20 +190,27 @@ describe('Scalene', function () {
                 We need to check if the instance hasOwnProperty(method)
                 */
 
+                expect(validScalene.validate === Scalene.prototype.validate).to.equal(true);
+            });
+
+            it('should return false for the overriden validate to derive from the Triangle class', function () {
+                expect(validScalene.validScalene === Triangle.prototype.validate).to.equal(false);
             });
 
             context('When the Scalene is valid', function () {
 
-                it('', function () {
-
+                it('isValid should return true', function () {
+                    validScalene.validate();
+                    expect(validScalene.isValid).to.equal(true);
                 });
 
             });
 
             context('When the Scalene is not valid', function () {
 
-                it('', function () {
-
+                it('isValid should return false', function () {
+                    notValidScalene.validate();
+                    expect(notValidScalene.isValid).to.equal(false)
                 });
 
             });
