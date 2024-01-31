@@ -81,7 +81,7 @@ describe('Triangle', function () {
     describe('validate', function () {
 
         it('should initilize a property called isValid', function () {
-            expect(triangleValid.isValid).to.be.a('null');
+            expect(triangleValid.isValid).to.be.a('undefined');
         });
 
         context('When the triangle is valid', function () {
@@ -120,10 +120,14 @@ describe('Triangle', function () {
 describe('Scalene', function () {
 
     let validScalene;
+    let notValidScalene;
 
     this.beforeEach(function () {
-        const [side1, side2, side3] = [1, 5, 10];
+        const [side1, side2, side3] = [2, 3, 5];
+        const [side4, side5, side6] = [5, 5, 5];
+
         validScalene = new Scalene(side1, side2, side3);
+        notValidScalene = new Scalene(side4, side5, side6);
     });
 
     describe('Constructor', function () {
@@ -132,10 +136,78 @@ describe('Scalene', function () {
             expect(validScalene).to.exist;
         });
 
+        it('should also be an instance from the Triangle class',  function () {
+            expect(validScalene).to.be.instanceOf(Scalene).and.to.be.instanceOf(Triangle);
+        });
+
         it('should initialize the 3 sides', function () {
             expect(validScalene.side1).to.exist;
             expect(validScalene.side2).to.exist;
             expect(validScalene.side3).to.exist;
+        });
+
+        it('should have the isValid property set to null', function () {
+            expect(validScalene.isValid).to.equal(undefined);
+        });
+
+    });
+
+    describe('isScalene', function () {
+
+        context('The Scalene is valid', function () {
+
+            it('should return true if the Scalene triangle is valid', function () {
+                expect(validScalene.isScalene()).to.equal(true);
+            });
+
+        });
+
+        context('The Scalene is not valid', function () {
+
+            it('should return false if the Scalenen trinagle is not valid', function () {
+                expect(notValidScalene.isScalene()).to.equal(false);
+            });
+
+        });
+
+    });
+
+    describe('validate', function () {
+
+        context('Must overide the method in the Trinagle class', function () {
+
+            it('successfully overides Trianlge: validate', function () {
+                /*
+                All we have to do is create an instance from Scalene and
+                call validate
+                    Since its the same name than it will use Scalene version instead of Triangle version
+                From here we can continue as usual
+
+                We have the instance: validScalene
+                We have the className: 'Scalene'
+                We have the mathodName: 'validate'
+
+                We need to check if the instance hasOwnProperty(method)
+                */
+
+            });
+
+            context('When the Scalene is valid', function () {
+
+                it('', function () {
+
+                });
+
+            });
+
+            context('When the Scalene is not valid', function () {
+
+                it('', function () {
+
+                });
+
+            });
+
         });
 
     });

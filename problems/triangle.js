@@ -4,7 +4,7 @@ class Triangle {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
-        this.isValid = null;
+        this.isValid = undefined;
     }
 
     getPerimeter() {
@@ -34,11 +34,16 @@ class Triangle {
 
 }
 
-class Scalene {
+class Scalene extends Triangle {
     constructor(side1, side2, side3) {
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
+        super(side1, side2, side3);
+
+    }
+
+    isScalene() {
+        // all sides cannot equal one another
+        if ((this.side1 === this.side2) || (this.side1 === this.side3)) return false;
+        return true;
     }
 }
 
