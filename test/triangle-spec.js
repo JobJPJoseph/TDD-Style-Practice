@@ -1,5 +1,5 @@
 // Your code here
-const { Triangle, Scalene } = require('../problems/triangle');
+const { Triangle, Scalene, Isosceles } = require('../problems/triangle');
 const { expect } = require('chai');
 // properly install chai spies, do not use sinon for this!
 const spies = require('chai-spies');
@@ -222,5 +222,92 @@ describe('Scalene', function () {
 });
 
 describe('Isosceles', function () {
+
+    let validIsosceles;
+    let notValidIsosceles;
+
+    this.beforeEach(function () {
+        const [side1, side2, side3] = [3, 3, 5];
+        const [side4, side5, side6] = [5, 10, 20];
+
+        validIsosceles = new Isosceles(side1, side2, side3);
+        notValidIsosceles = new Isosceles(side4, side5, side6);
+    });
+
+    describe('Constructor', function () {
+
+        it('should initialize an instance of the Isosceles class', function () {
+            expect(validIsosceles).to.exist;
+        });
+
+        it('should also be an instance from the Triangle class',  function () {
+            expect(validIsosceles).to.be.instanceOf(Isosceles).and.to.be.instanceOf(Triangle);
+        });
+
+        it('should initialize the 3 sides', function () {
+            expect(validIsosceles.side1).to.exist;
+            expect(validIsosceles.side2).to.exist;
+            expect(validIsosceles.side3).to.exist;
+        });
+
+        it('should have the isValid property set to null', function () {
+            expect(validIsosceles.isValid).to.equal(undefined);
+        });
+
+    });
+
+    describe('isIsosceles', function () {
+
+        context('The Isosceles is valid', function () {
+
+            it('should return true if the Isosceles triangle is valid', function () {
+                expect(validIsosceles.isIsosceles()).to.equal(true);
+            });
+
+        });
+
+        context('The Isosceles is not valid', function () {
+
+            it('should return false if the Isosceles triangle is not valid', function () {
+                expect(notValidIsosceles.isIsosceles()).to.equal(false);
+            });
+
+        });
+
+    });
+
+    describe('validate', function () {
+
+        context('Must override the method in the Trinagle class', function () {
+
+            it('should return true for the overriden validate to derive from the Isosceles class', function () {
+                expect(validIsosceles.validate === Isosceles.prototype.validate).to.equal(true);
+            });
+
+            it('should return false for the overriden validate to derive from the Triangle class', function () {
+                expect(validIsosceles.validate === Triangle.prototype.validate).to.equal(false);
+            });
+
+            context('When the Isosceles is valid', function () {
+
+                it('isValid should return true', function () {
+                    validIsosceles.validate();
+                    expect(validIsosceles.isValid).to.equal(true);
+                });
+
+            });
+
+            context('When the Isosceles is not valid', function () {
+
+                it('isValid should return false', function () {
+                    notValidIsosceles.validate();
+                    expect(notValidIsosceles.isValid).to.equal(false)
+                });
+
+            });
+
+        });
+
+    });
 
 });

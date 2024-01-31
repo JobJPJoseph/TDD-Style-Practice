@@ -51,7 +51,7 @@ write the code needed to pass those specs.
 
 ## `Isosceles` Class
 
-An Isosceles triangle has to sides of equal lengths.
+An Isosceles triangle has two sides of equal lengths.
 
 The `Isosceles` class should have similar methods to the `Scalene` class. The
 only difference is that the methods should check the side lengths and validate
