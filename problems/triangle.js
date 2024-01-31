@@ -45,6 +45,10 @@ class Scalene extends Triangle {
         if ((this.side1 === this.side2) || (this.side1 === this.side3)) return false;
         return true;
     }
+
+    validate() {
+        this.isValid = this.isScalene();
+    }
 }
 
 module.exports = {
