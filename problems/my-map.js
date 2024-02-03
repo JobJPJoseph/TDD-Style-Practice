@@ -1,11 +1,11 @@
 function myMap(inputArray, callback) {
   // Your code here
-  // if (!Array.isArray(inputArray)) throw new Error;
-
+  if (!Array.isArray(inputArray)) throw new Error;
+  if (typeof callback !== 'function') throw new Error;
   // const emptyArray = [];
 
 
-  // return null;
+  return null;
 }
 
 module.exports = {
