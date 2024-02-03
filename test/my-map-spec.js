@@ -1,8 +1,9 @@
 // Your code here
-const { expect } = require('chai');
 const { myMap } = require('../problems/my-map');
-const spies = require('chai-spies');
+
 const chai = require('chai');
+const spies = require('chai-spies');
+const { expect } = require('chai');
 
 chai.use(spies);
 
@@ -60,7 +61,11 @@ describe('myMap', function () {
     });
 
     it('should call the callback', function () {
+        const myMultiply = chai.spy.on(multiply);
 
+        myMap(arrayTypeNums, myMultiply);
+
+        expect(myMultiply).to.have.been.called();
     });
 
     context('validate return value type', function () {
