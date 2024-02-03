@@ -47,8 +47,24 @@ describe('myMap', function () {
         expect(myMapSpy).to.have.been.called.with(arrayTypeNums, justReturn);
     });
 
-    it('should throw an error if first argument is not an array type', function () {
-        expect(() => myMap(stringType, justReturn)).to.throw(Error);
+    context('validate arguments type', function () {
+
+        it('should throw an error if first argument is not an array type', function () {
+            expect(() => myMap(stringType, justReturn)).to.throw(Error);
+        });
+
+        it('should throw an Error if the second argument is not a callback', function () {
+            expect(() => myMap(arrayTypeNums, stringType)).to.throw(Error);
+        });
+
+    });
+
+    it('should call the callback', function () {
+
+    });
+
+    context('validate return value type', function () {
+
     });
 
 });
