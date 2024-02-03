@@ -13,7 +13,7 @@ function myMap(inputArray, callback) {
   }
 
 
-  return null;
+  return emptyArray;
 }
 
 module.exports = {

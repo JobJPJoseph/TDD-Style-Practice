@@ -68,7 +68,57 @@ describe('myMap', function () {
         expect(myMultiply).to.have.been.called();
     });
 
-    context('validate return value type', function () {
+    context('arrayTypeNums', function () {
+
+        it('should return a value that is an array type and equal [2, 4, 6, 8]', function () {
+            const expected = [2, 4, 6, 8];
+            const actual = myMap(arrayTypeNums, multiply);
+
+            expect(actual).to.be.a('array');
+            expect(actual).to.deep.equal(expected);
+        });
+
+    });
+
+    context('arrayTypeStr', function () {
+
+        it('should return a value that is an array and equal ["ayay", "byay", "cyay", "dyay"]', function () {
+            const actual = myMap(arrayTypeStr, addYay);
+            const expected = ["ayay", "byay", "cyay", "dyay"];
+
+            expect(actual).to.be.a('array');
+            expect(actual).to.deep.equal(expected);
+        });
+
+    });
+
+    context('emptyArray', function () {
+
+        it('should return a value that is an array type and equal []', function () {
+            const actual = myMap(emptyArray, multiply);
+            const expected = [];
+
+            expect(actual).to.be.a('array');
+            expect(actual).to.deep.equal(expected);
+        });
+
+    });
+
+    context('mixed inputs', function () {
+
+        it('should still return a value [NaN, NaN, NaN, NaN]', function () {
+            const actual = myMap(arrayTypeStr, multiply);
+            const expected = [NaN, NaN, NaN, NaN];
+
+            expect(actual).to.deep.equal(expected);
+        });
+
+        it('should also still return a value [NaN, NaN, NaN, NaN]', function () {
+            const actual = myMap(arrayTypeNums, addYay);
+            const expected = [ '1yay', '2yay', '3yay', '4yay' ];
+
+            expect(actual).to.deep.equal(expected);
+        });
 
     });
 
